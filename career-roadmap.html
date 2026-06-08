@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Career Roadmap 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a12;
+    --card: #111120;
+    --border: #1e1e35;
+    --accent1: #f7c948;
+    --accent2: #e05c7a;
+    --accent3: #5ecfb1;
+    --accent4: #7b8ef5;
+    --text: #e8e8f0;
+    --muted: #7070a0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Animated background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 10% 20%, rgba(247,201,72,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 90% 80%, rgba(94,207,177,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 50% 50%, rgba(123,142,245,0.04) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Header */
+  .hero {
+    text-align: center;
+    padding: 50px 20px 40px;
+    position: relative;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: rgba(247,201,72,0.12);
+    border: 1px solid rgba(247,201,72,0.3);
+    color: var(--accent1);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 6vw, 52px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #fff 30%, var(--accent1) 70%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero p {
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 500px;
+    margin: 0 auto 30px;
+    line-height: 1.6;
+  }
+
+  .profile-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .pill {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 12px;
+    padding: 5px 14px;
+    border-radius: 20px;
+  }
+
+  .pill span { color: var(--text); font-weight: 500; }
+
+  /* Section headers */
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Path cards */
+  .paths-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .path-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .path-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--card-accent);
+  }
+
+  .path-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--card-accent);
+  }
+
+  .path-card.recommended {
+    border-color: rgba(247,201,72,0.35);
+  }
+
+  .path-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+
+  .path-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .path-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+
+  .badge-hot { background: rgba(224,92,122,0.2); color: #e05c7a; border: 1px solid rgba(224,92,122,0.3); }
+  .badge-best { background: rgba(247,201,72,0.2); color: #f7c948; border: 1px solid rgba(247,201,72,0.3); }
+  .badge-stable { background: rgba(94,207,177,0.2); color: #5ecfb1; border: 1px solid rgba(94,207,177,0.3); }
+
+  .path-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .salary-range {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+
+  .salary-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+  .salary-value { font-size: 18px; font-weight: 700; color: var(--accent1); font-family: 'Playfair Display', serif; }
+  .salary-arrow { font-size: 12px; color: var(--muted); }
+
+  .skills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .skill-tag {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    color: #b0b0cc;
+  }
+
+  /* RECOMMENDED badge */
+  .recommend-banner {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: var(--accent1);
+    color: #000;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 8px;
+  }
+
+  /* Roadmap timeline */
+  .roadmap {
+    position: relative;
+    margin-bottom: 40px;
+  }
+
+  .timeline-line {
+    position: absolute;
+    left: 28px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent1), var(--accent2), var(--accent3));
+    opacity: 0.4;
+  }
+
+  .phase {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 28px;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .phase:nth-child(2) { animation-delay: 0.1s; }
+  .phase:nth-child(3) { animation-delay: 0.2s; }
+  .phase:nth-child(4) { animation-delay: 0.3s; }
+  .phase:nth-child(5) { animation-delay: 0.4s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .phase-dot {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 800;
+    position: relative;
+    z-index: 1;
+    margin-top: 10px;
+  }
+
+  .phase-content {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+  }
+
+  .phase-time {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .phase-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .phase-tasks {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 12px;
+  }
+
+  .phase-tasks li {
+    font-size: 13px;
+    color: var(--muted);
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .phase-tasks li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--phase-color);
+  }
+
+  /* Schedule block */
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .schedule-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  .schedule-time {
+    font-size: 22px;
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+    color: var(--accent1);
+    margin-bottom: 4px;
+  }
+
+  .schedule-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .schedule-activity {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  /* Resources */
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+
+  .resource-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+  }
+
+  .resource-platform {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  .resource-name {
+    font-size: 13px;
+    color: var(--text);
+  }
+
+  .resource-tag {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* Tips box */
+  .tips-box {
+    background: linear-gradient(135deg, rgba(247,201,72,0.08), rgba(94,207,177,0.08));
+    border: 1px solid rgba(247,201,72,0.2);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 30px;
+  }
+
+  .tips-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--accent1);
+    margin-bottom: 14px;
+  }
+
+  .tip-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .tip-icon { flex-shrink: 0; font-size: 14px; }
+
+  /* Tabs */
+  .tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+  }
+
+  .tab-btn {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .tab-btn.active {
+    background: var(--accent1);
+    color: #000;
+    font-weight: 700;
+  }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* Footer */
+  .footer-note {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    padding-top: 30px;
+    border-top: 1px solid var(--border);
+    line-height: 1.8;
+  }
+
+  .highlight { color: var(--accent3); font-weight: 600; }
+
+  @media (max-width: 600px) {
+    .path-header { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-tag">Career Roadmap 2026</div>
+    <h1>Your Path to a<br>High-Paying Tech Role</h1>
+    <p>Personalized for a CSE B.Tech graduate working 9–7, aiming to break into ₹8–20 LPA within 12 months.</p>
+    <div class="profile-pills">
+      <div class="pill">🎓 <span>CSE B.Tech · Alliance University</span></div>
+      <div class="pill">💼 <span>Deduce Technologies · ₹16K/mo</span></div>
+      <div class="pill">⏰ <span>9 AM – 7 PM office hours</span></div>
+      <div class="pill">📅 <span>~2 hrs/day to prep</span></div>
+    </div>
+  </div>
+
+  <!-- Path Selection Tabs -->
+  <div class="section-label">Step 1 — Choose Your Path</div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('dsa')">DSA + SWE</button>
+    <button class="tab-btn" onclick="switchTab('data')">Data Analyst</button>
+    <button class="tab-btn" onclick="switchTab('aiml')">AI / ML</button>
+    <button class="tab-btn" onclick="switchTab('cloud')">Cloud Engineer</button>
+  </div>
+
+  <!-- TAB: DSA -->
+  <div id="tab-dsa" class="tab-panel active">
+    <div class="paths-grid">
+      <div class="path-card recommended" style="--card-accent: #f7c948;">
+        <div class="recommend-banner">⭐ Best for You</div>
+        <div class="path-header">
+          <div class="path-title">Software Engineer (DSA Track)</div>
+          <span class="path-badge badge-best">High Demand</span>
+        </div>
+        <p class="path-desc">Most accessible path from your current role. Land at product companies like Razorpay, Zepto, Flipkart or service giants like TCS/Wipro at 2–3× your current salary. Skills are timeless and transferable.</p>
+        <div class="salary-range">
+          <span class="salary-label">Target CTC</span>
+          <span class="salary-value">₹6 – 12 LPA</span>
+          <span class="salary-arrow">in 6–9 months</span>
+        </div>
+        <div class="skills-row">
+          <span class="skill-tag">DSA</span>
+          <span class="skill-tag">Java / Python</span>
+          <span class="skill-tag">LeetCode</span>
+          <span class="skill-tag">System Design Basics</span>
+          <span class="skill-tag">GitHub Portfolio</span>
+          <span class="skill-tag">OOPs / DBMS</span>
+        </div>
+      </div>
+    </div>
+    <div class="section-label">12-Month Roadmap — SWE / DSA</div>
+    <div class="roadmap">
+      <div class="timeline-line"></div>
+
+      <div class="phase" style="--phase-color: #f7c948;">
+        <div class="phase-dot" style="background: rgba(247,201,72,0.2); color: #f7c948;">1</div>
+        <div class="phase-content" style="border-left: 3px solid #f7c948;">
+          <div class="phase-time" style="color: #f7c948;">Month 1 – 2 · Foundation</div>
+          <div class="phase-title">Revive Your CS Core</div>
+          <p style="font-size:13px; color: var(--muted); line-height:1.6;">Brush up on the fundamentals before DSA or interviews.</p>
+          <ul class="phase-tasks" style="--phase-color: #f7c948;">
+            <li>Pick ONE language: <strong style="color:#fff">Java or Python</strong> (Python recommended for speed)</li>
+            <li>Revise OOPs, Arrays, Strings, Linked Lists, Stacks, Queues</li>
+            <li>Revise DBMS basics — SQL queries, joins, normalization</li>
+            <li>Revise OS concepts — processes, threads, memory</li>
+            <li>Create a GitHub profile + upload 2 mini projects from college</li>
+            <li>Solve 20 LeetCode Easy problems</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase" style="--phase-color: #e05c7a;">
+        <div class="phase-dot" style="background: rgba(224,92,122,0.2); color: #e05c7a;">2</div>
+        <div class="phase-content" style="border-left: 3px solid #e05c7a;">
+          <div class="phase-time" style="color: #e05c7a;">Month 3 – 5 · Core DSA</div>
+          <div class="phase-title">Crack the Coding Round</div>
+          <p style="font-size:13px; color: var(--muted); line-height:1.6;">This is the filter for 90% of tech companies. Focus is key.</p>
+          <ul class="phase-tasks" style="--phase-color: #e05c7a;">
+            <li>Trees, Graphs (BFS/DFS), Recursion, Backtracking</li>
+            <li>Dynamic Programming (top 20 patterns)</li>
+            <li>Sorting & Searching algorithms</li>
+            <li>Solve 150+ LeetCode problems (60 Easy, 70 Med, 20 Hard)</li>
+            <li>Complete Striver's SDE Sheet or NeetCode 150</li>
+            <li>Start appearing in weekly LeetCode contests</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase" style="--phase-color: #7b8ef5;">
+        <div class="phase-dot" style="background: rgba(123,142,245,0.2); color: #7b8ef5;">3</div>
+        <div class="phase-content" style="border-left: 3px solid #7b8ef5;">
+          <div class="phase-time" style="color: #7b8ef5;">Month 6 – 8 · Projects + Portfolio</div>
+          <div class="phase-title">Build What Gets You Hired</div>
+          <p style="font-size:13px; color: var(--muted); line-height:1.6;">Showcase real work — especially for product companies and startups.</p>
+          <ul class="phase-tasks" style="--phase-color: #7b8ef5;">
+            <li>Build 2 solid full-stack or backend projects (with README)</li>
+            <li>Deploy them on Render/Vercel with live links</li>
+            <li>Learn System Design basics — load balancers, caching, DB design</li>
+            <li>Contribute to 1–2 open source repos (optional but impactful)</li>
+            <li>Polish LinkedIn: headline, about, skills, projects section</li>
+            <li>Write your ATS-optimized resume (1 page, results-focused)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase" style="--phase-color: #5ecfb1;">
+        <div class="phase-dot" style="background: rgba(94,207,177,0.2); color: #5ecfb1;">4</div>
+        <div class="phase-content" style="border-left: 3px solid #5ecfb1;">
+          <div class="phase-time" style="color: #5ecfb1;">Month 9 – 12 · Apply + Negotiate</div>
+          <div class="phase-title">Land the Offer</div>
+          <p style="font-size:13px; color: var(--muted); line-height:1.6;">Now hit the job market systematically and confidently.</p>
+          <ul class="phase-tasks" style="--phase-color: #5ecfb1;">
+            <li>Apply to 10–15 companies per week on Naukri, LinkedIn, Unstop</li>
+            <li>Target: Startups (Series A–C), mid-size product companies first</li>
+            <li>Prepare behavioral answers (STAR format) for HR rounds</li>
+            <li>Do 3–5 mock interviews on Pramp or with peers</li>
+            <li>Never reveal current salary — anchor on market rate</li>
+            <li>Negotiate: even ₹8 LPA is 4× your current package!</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: Data Analyst -->
+  <div id="tab-data" class="tab-panel">
+    <div class="paths-grid">
+      <div class="path-card" style="--card-accent: #5ecfb1;">
+        <div class="path-header">
+          <div class="path-title">Data Analyst</div>
+          <span class="path-badge badge-stable">Stable & Accessible</span>
+        </div>
+        <p class="path-desc">One of the most accessible high-paying paths for CSE grads in 2026. High demand across banking, e-commerce, healthcare. Less competitive than SWE in terms of DSA.</p>
+        <div class="salary-range">
+          <span class="salary-label">Target CTC</span>
+          <span class="salary-value">₹5 – 10 LPA</span>
+          <span class="salary-arrow">in 6–8 months</span>
+        </div>
+        <div class="skills-row">
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Python (Pandas)</span>
+          <span class="skill-tag">Power BI / Tableau</span>
+          <span class="skill-tag">Excel</span>
+          <span class="skill-tag">Statistics</span>
+          <span class="skill-tag">Data Storytelling</span>
+        </div>
+      </div>
+    </div>
+    <div class="section-label">8-Month Roadmap — Data Analyst</div>
+    <div class="roadmap">
+      <div class="timeline-line"></div>
+      <div class="phase" style="--phase-color: #5ecfb1;">
+        <div class="phase-dot" style="background: rgba(94,207,177,0.2); color: #5ecfb1;">1</div>
+        <div class="phase-content" style="border-left: 3px solid #5ecfb1;">
+          <div class="phase-time" style="color: #5ecfb1;">Month 1 – 2 · SQL + Excel</div>
+          <div class="phase-title">Master the Must-Have Tools</div>
+          <ul class="phase-tasks" style="--phase-color: #5ecfb1;">
+            <li>SQL: SELECT, JOINs, subqueries, window functions, GROUP BY</li>
+            <li>Practice on Mode Analytics, HackerRank SQL, LeetCode DB</li>
+            <li>Advanced Excel: PivotTables, VLOOKUP, charts</li>
+            <li>Start Python basics: variables, loops, functions</li>
+          </ul>
+        </div>
+      </div>
+      <div class="phase" style="--phase-color: #7b8ef5;">
+        <div class="phase-dot" style="background: rgba(123,142,245,0.2); color: #7b8ef5;">2</div>
+        <div class="phase-content" style="border-left: 3px solid #7b8ef5;">
+          <div class="phase-time" style="color: #7b8ef5;">Month 3 – 5 · Python + Visualization</div>
+          <div class="phase-title">Analyze & Visualize Data</div>
+          <ul class="phase-tasks" style="--phase-color: #7b8ef5;">
+            <li>Pandas, NumPy, Matplotlib, Seaborn</li>
+            <li>Power BI or Tableau — build 2 interactive dashboards</li>
+            <li>Statistics: mean, median, std dev, correlation, A/B testing basics</li>
+            <li>Complete 3 projects from Kaggle or real-world datasets</li>
+          </ul>
+        </div>
+      </div>
+      <div class="phase" style="--phase-color: #f7c948;">
+        <div class="phase-dot" style="background: rgba(247,201,72,0.2); color: #f7c948;">3</div>
+        <div class="phase-content" style="border-left: 3px solid #f7c948;">
+          <div class="phase-time" style="color: #f7c948;">Month 6 – 8 · Portfolio + Jobs</div>
+          <div class="phase-title">Build Portfolio & Apply</div>
+          <ul class="phase-tasks" style="--phase-color: #f7c948;">
+            <li>Upload 3 case study projects on GitHub/Notion/Tableau Public</li>
+            <li>Target: BFSI, e-commerce, healthcare companies</li>
+            <li>Apply on Naukri, LinkedIn with "Data Analyst", "Business Analyst" keywords</li>
+            <li>Prepare for SQL interview rounds (most common filter)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: AI/ML -->
+  <div id="tab-aiml" class="tab-panel">
+    <div class="paths-grid">
+      <div class="path-card" style="--card-accent: #e05c7a;">
+        <div class="path-header">
+          <div class="path-title">AI / ML Engineer</div>
+          <span class="path-badge badge-hot">🔥 Hottest 2026</span>
+        </div>
+        <p class="path-desc">Highest earning potential but requires the most time to become interview-ready. Great long-term bet. Fastest growth trajectory in India right now.</p>
+        <div class="salary-range">
+          <span class="salary-label">Target CTC</span>
+          <span class="salary-value">₹8 – 20 LPA</span>
+          <span class="salary-arrow">in 12–18 months</span>
+        </div>
+        <div class="skills-row">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">PyTorch / TensorFlow</span>
+          <span class="skill-tag">ML Algorithms</span>
+          <span class="skill-tag">Mathematics</span>
+          <span class="skill-tag">NLP Basics</span>
+          <span class="skill-tag">Hugging Face</span>
+        </div>
+      </div>
+    </div>
+    <div class="section-label">12–18 Month Roadmap — AI/ML</div>
+    <div class="roadmap">
+      <div class="timeline-line"></div>
+      <div class="phase" style="--phase-color: #e05c7a;">
+        <div class="phase-dot" style="background: rgba(224,92,122,0.2); color: #e05c7a;">1</div>
+        <div class="phase-content" style="border-left: 3px solid #e05c7a;">
+          <div class="phase-time" style="color: #e05c7a;">Month 1 – 3 · Python + Math</div>
+          <div class="phase-title">Build the Foundation</div>
+          <ul class="phase-tasks" style="--phase-color: #e05c7a;">
+            <li>Python: OOPs, Pandas, NumPy, Matplotlib</li>
+            <li>Math: Linear Algebra, Calculus, Probability, Statistics</li>
+            <li>Course: Andrew Ng's Machine Learning Specialization (Coursera)</li>
+            <li>Solve basic ML problems on Kaggle</li>
+          </ul>
+        </div>
+      </div>
+      <div class="phase" style="--phase-color: #7b8ef5;">
+        <div class="phase-dot" style="background: rgba(123,142,245,0.2); color: #7b8ef5;">2</div>
+        <div class="phase-content" style="border-left: 3px solid #7b8ef5;">
+          <div class="phase-time" style="color: #7b8ef5;">Month 4 – 8 · Core ML + DL</div>
+          <div class="phase-title">Algorithms & Deep Learning</div>
+          <ul class="phase-tasks" style="--phase-color: #7b8ef5;">
+            <li>Supervised, Unsupervised, Reinforcement Learning concepts</li>
+            <li>Neural Networks, CNNs, RNNs with PyTorch or TensorFlow</li>
+            <li>NLP basics: tokenization, embeddings, transformers</li>
+            <li>Complete 2 ML end-to-end projects (EDA → Model → Deploy)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="phase" style="--phase-color: #5ecfb1;">
+        <div class="phase-dot" style="background: rgba(94,207,177,0.2); color: #5ecfb1;">3</div>
+        <div class="phase-content" style="border-left: 3px solid #5ecfb1;">
+          <div class="phase-time" style="color: #5ecfb1;">Month 9 – 12 · Specialize + Deploy</div>
+          <div class="phase-title">Stand Out with GenAI Knowledge</div>
+          <ul class="phase-tasks" style="--phase-color: #5ecfb1;">
+            <li>Learn LangChain, RAG pipelines, prompt engineering</li>
+            <li>Hugging Face models — fine-tuning basics</li>
+            <li>Deploy a model using FastAPI or Streamlit</li>
+            <li>Target: AI startups, product companies, analytics firms</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: Cloud -->
+  <div id="tab-cloud" class="tab-panel">
+    <div class="paths-grid">
+      <div class="path-card" style="--card-accent: #7b8ef5;">
+        <div class="path-header">
+          <div class="path-title">Cloud / DevOps Engineer</div>
+          <span class="path-badge badge-stable">Evergreen Demand</span>
+        </div>
+        <p class="path-desc">Certification-driven path — fastest salary jump possible. AWS/Azure certifications alone can get you interviews. Every company is on cloud migration right now.</p>
+        <div class="salary-range">
+          <span class="salary-label">Target CTC</span>
+          <span class="salary-value">₹7 – 15 LPA</span>
+          <span class="salary-arrow">in 8–12 months</span>
+        </div>
+        <div class="skills-row">
+          <span class="skill-tag">AWS / Azure / GCP</span>
+          <span class="skill-tag">Linux</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">Kubernetes</span>
+          <span class="skill-tag">CI/CD</span>
+          <span class="skill-tag">Terraform</span>
+        </div>
+      </div>
+    </div>
+    <div class="section-label">10-Month Roadmap — Cloud / DevOps</div>
+    <div class="roadmap">
+      <div class="timeline-line"></div>
+      <div class="phase" style="--phase-color: #7b8ef5;">
+        <div class="phase-dot" style="background: rgba(123,142,245,0.2); color: #7b8ef5;">1</div>
+        <div class="phase-content" style="border-left: 3px solid #7b8ef5;">
+          <div class="phase-time" style="color: #7b8ef5;">Month 1 – 3 · Linux + AWS Basics</div>
+          <div class="phase-title">Ground Zero</div>
+          <ul class="phase-tasks" style="--phase-color: #7b8ef5;">
+            <li>Linux: file system, shell scripting, permissions, cron jobs</li>
+            <li>Networking basics: DNS, HTTP, TCP/IP, firewalls</li>
+            <li>AWS free tier: EC2, S3, IAM, VPC, RDS</li>
+            <li>Target: AWS Cloud Practitioner certification (Month 3)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="phase" style="--phase-color: #e05c7a;">
+        <div class="phase-dot" style="background: rgba(224,92,122,0.2); color: #e05c7a;">2</div>
+        <div class="phase-content" style="border-left: 3px solid #e05c7a;">
+          <div class="phase-time" style="color: #e05c7a;">Month 4 – 7 · DevOps Tools</div>
+          <div class="phase-title">Docker, Kubernetes, CI/CD</div>
+          <ul class="phase-tasks" style="--phase-color: #e05c7a;">
+            <li>Docker: containerize an app, build Docker images</li>
+            <li>Kubernetes: pods, deployments, services, Helm basics</li>
+            <li>GitHub Actions / Jenkins for CI/CD pipelines</li>
+            <li>AWS Solutions Architect Associate certification (Month 7)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="phase" style="--phase-color: #5ecfb1;">
+        <div class="phase-dot" style="background: rgba(94,207,177,0.2); color: #5ecfb1;">3</div>
+        <div class="phase-content" style="border-left: 3px solid #5ecfb1;">
+          <div class="phase-time" style="color: #5ecfb1;">Month 8 – 10 · Jobs</div>
+          <div class="phase-title">Certifications → Interviews</div>
+          <ul class="phase-tasks" style="--phase-color: #5ecfb1;">
+            <li>Build 2 cloud projects (auto-scaling web app, serverless pipeline)</li>
+            <li>Apply to DevOps/Cloud roles on Naukri, LinkedIn</li>
+            <li>Target: IT service firms, cloud consulting, startups</li>
+            <li>Prepare for scenario-based interview questions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Daily Schedule -->
+  <div class="section-label">Step 2 — Your Daily Study Schedule</div>
+  <div style="background: rgba(247,201,72,0.06); border: 1px solid rgba(247,201,72,0.2); border-radius: 12px; padding: 14px; margin-bottom: 16px; font-size:13px; color: var(--muted); line-height:1.6;">
+    ⏰ <strong style="color:#fff">Office: 9 AM – 7 PM.</strong> You have roughly <span style="color: var(--accent1)">2 hrs/day on weekdays</span> and <span style="color: var(--accent1)">4–5 hrs on weekends</span>. That's enough — consistency beats intensity.
+  </div>
+  <div class="schedule-grid">
+    <div class="schedule-card">
+      <div class="schedule-time">6:00–7:30</div>
+      <div class="schedule-label">Early Morning (Before Office)</div>
+      <div class="schedule-activity">DSA / Coding practice — 1 LeetCode problem. Brain is fresh, do hard thinking here.</div>
+    </div>
+    <div class="schedule-card">
+      <div class="schedule-time">8:00–9:00</div>
+      <div class="schedule-label">Commute / Lunch Break</div>
+      <div class="schedule-activity">Watch 1 concept video on phone (YT: Striver, CodeWithHarry, Apna College). Passive learning.</div>
+    </div>
+    <div class="schedule-card">
+      <div class="schedule-time">8:00–10:00</div>
+      <div class="schedule-label">Evening (After Office)</div>
+      <div class="schedule-activity">Theory revision or project work. Avoid new hard topics — review & practice only.</div>
+    </div>
+    <div class="schedule-card">
+      <div class="schedule-time">Weekend</div>
+      <div class="schedule-label">Sat + Sun · 4–5 hrs/day</div>
+      <div class="schedule-activity">Deep dive sessions — mock interviews, new chapters, project building, revision tests.</div>
+    </div>
+  </div>
+
+  <!-- Resources -->
+  <div class="section-label">Step 3 — Free Resources to Use</div>
+  <div class="resources-grid">
+    <div class="resource-card">
+      <div class="resource-platform" style="color: #f7c948;">DSA / Coding</div>
+      <div class="resource-name">Striver's SDE Sheet</div>
+      <div class="resource-tag">takeuforward.org · Free</div>
+    </div>
+    <div class="resource-card">
+      <div class="resource-platform" style="color: #f7c948;">DSA Practice</div>
+      <div class="resource-name">LeetCode + NeetCode 150</div>
+      <div class="resource-tag">leetcode.com · Free tier</div>
+    </div>
+    <div class="resource-card">
+      <div class="resource-platform" style="color: #5ecfb1;">Data / ML</div>
+      <div class="resource-name">Kaggle Learn</div>
+      <div class="resource-tag">kaggle.com · 100% Free</div>
+    </div>
+    <div class="resource-card">
+      <div class="resource-platform" style="color: #5ecfb1;">ML Course</div>
+      <div class="resource-name">Andrew Ng · Coursera</div>
+      <div class="resource-tag">Audit for free</div>
+    </div>
+    <div class="resource-card">
+      <div class="resource-platform" style="color: #e05c7a;">Video Learning</div>
+      <div class="resource-name">Apna College / CodeWithHarry</div>
+      <div class="resource-tag">YouTube · Free</div>
+    </div>
+    <div class="resource-card">
+      <div class="resource-platform" style="color: #e05c7a;">SQL Practice</div>
+      <div class="resource-name">SQLZoo + HackerRank SQL</div>
+      <div class="resource-tag">sqlzoo.net · Free</div>
+    </div>
+    <div class="resource-card">
+      <div class="resource-platform" style="color: #7b8ef5;">Cloud</div>
+      <div class="resource-name">AWS Skill Builder</div>
+      <div class="resource-tag">skillbuilder.aws · Free</div>
+    </div>
+    <div class="resource-card">
+      <div class="resource-platform" style="color: #7b8ef5;">Mock Interviews</div>
+      <div class="resource-name">Pramp · Interviewing.io</div>
+      <div class="resource-tag">pramp.com · Free sessions</div>
+    </div>
+    <div class="resource-card">
+      <div class="resource-platform" style="color: #f7c948;">Job Hunting</div>
+      <div class="resource-name">Naukri + LinkedIn + Unstop</div>
+      <div class="resource-tag">Set up job alerts now</div>
+    </div>
+  </div>
+
+  <!-- Power Tips -->
+  <div class="tips-box">
+    <div class="tips-title">💡 Power Tips for Women in Tech 2026</div>
+    <div class="tip-item">
+      <span class="tip-icon">🎯</span>
+      <span><strong style="color:#fff">Pick ONE path and stay consistent.</strong> Don't switch between DSA and ML every month. Depth beats breadth in tech hiring.</span>
+    </div>
+    <div class="tip-item">
+      <span class="tip-icon">💰</span>
+      <span><strong style="color:#fff">Never reveal your current ₹16K salary.</strong> When asked, say "I'm targeting market rate for this role, around ₹X LPA." This alone can add ₹2–3 LPA to your offer.</span>
+    </div>
+    <div class="tip-item">
+      <span class="tip-icon">🌐</span>
+      <span><strong style="color:#fff">LinkedIn is your biggest asset.</strong> Update your headline to your target role, add skills, post your project updates weekly. Recruiters will find you.</span>
+    </div>
+    <div class="tip-item">
+      <span class="tip-icon">👩‍💻</span>
+      <span><strong style="color:#fff">Target women-in-tech programs:</strong> Google STEP, Microsoft LEAP, Walmart's SheCodes, and Amazon WOW all actively recruit women engineers with higher consideration.</span>
+    </div>
+    <div class="tip-item">
+      <span class="tip-icon">📊</span>
+      <span><strong style="color:#fff">Track your progress weekly.</strong> Set a goal: e.g., 3 LeetCode problems/week, 1 chapter/week. Use Notion or a simple sheet to stay accountable.</span>
+    </div>
+    <div class="tip-item">
+      <span class="tip-icon">🤝</span>
+      <span><strong style="color:#fff">Community matters.</strong> Join LinkedIn groups, Women Who Code India, WiDS (Women in Data Science). Referrals from network land 3× more interviews than cold applies.</span>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-note">
+    <span class="highlight">Your current role is your launchpad, not your limit.</span><br>
+    With 2 focused hours daily, you can realistically reach <span class="highlight">₹8–12 LPA within 9–12 months.</span><br>
+    Roadmap generated June 2026 · Based on current India tech hiring trends
+  </div>
+
+</div>
+
+<script>
+  function switchTab(id) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
+</body>
+</html>
